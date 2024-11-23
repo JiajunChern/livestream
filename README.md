@@ -23,3 +23,6 @@ Dubbo集群作为服务提供者，多个API服务作为服务调用方
 
 部署流程：
 - Docker 启动 nacos
+
+模块启动顺序：
+- ImProviderApplication -> ImCoreServerApplication -> ImRouterProviderApplication -> MsgProviderApplication -> ImClientApplication -> ImClientApplication2
