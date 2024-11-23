@@ -1,1 +1,1 @@
-imRouter=cluster.provider.router.org.livestream.im.ImRouterCluster
+imRouter=org.livestream.im.router.provider.cluster.ImRouterCluster

@@ -33,7 +33,7 @@ public class WsNettyImServerStarter implements InitializingBean {
     private static Logger LOGGER = LoggerFactory.getLogger(WsNettyImServerStarter.class);
 
     //指定监听的端口
-    @Value("${qiyu.im.ws.port}")
+    @Value("${livestream.im.ws.port}")
     private int port;
     @Resource
     private WsSharkHandler wsSharkHandler;

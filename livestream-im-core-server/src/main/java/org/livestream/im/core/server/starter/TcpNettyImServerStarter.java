@@ -30,7 +30,7 @@ public class TcpNettyImServerStarter implements InitializingBean {
     private static Logger LOGGER = LoggerFactory.getLogger(TcpNettyImServerStarter.class);
 
     //指定监听的端口
-    @Value("${qiyu.im.tcp.port}")
+    @Value("${livestream.im.tcp.port}")
     private int port;
     @Resource
     private TcpImServerCoreHandler imServerCoreHandler;

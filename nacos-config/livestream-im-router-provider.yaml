@@ -3,12 +3,6 @@ livestream:
     redis:
     nacos:
     rocketmq:
-
-  im:
-    tcp:
-      port: 8085
-    ws:
-      port: 8086
   rmq:
     producer:
       nameSrv: ${livestream.server.rocketmq}:9876
@@ -17,14 +11,9 @@ livestream:
       sendMsgTimeout: 3000
       retryTimes: 2
 
-
 spring:
   application:
-    name: livestream-im-core-server
-  cloud:
-    nacos:
-      discovery:
-        ip: [ 写im-core-server的机器ip ]
+    name: livestream-im-router-provider
   data:
     redis:
       port: 6379
@@ -43,4 +32,4 @@ dubbo:
   registry:
     address: nacos://${livestream.server.nacos}:8848?namespace=livestream-dev #&&username=nacos&&password=nacos
   protocol:
-    port: 9099
+    port: 9098

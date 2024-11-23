@@ -28,7 +28,7 @@ public class WsSharkHandler extends ChannelInboundHandlerAdapter {
     private static final Logger LOGGER = LoggerFactory.getLogger(WsSharkHandler.class);
 
     //指定监听的端口
-    @Value("${qiyu.im.ws.port}")
+    @Value("${livestream.im.ws.port}")
     private int port;
     @Value("${spring.cloud.nacos.discovery.ip}")
     private String serverIp;

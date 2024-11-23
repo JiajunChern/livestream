@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
  * @Date: Created in 22:49 2023/5/6
  * @Description
  */
-@ConfigurationProperties(prefix = "qiyu.rmq.producer")
+@ConfigurationProperties(prefix = "livestream.rmq.producer")
 @Configuration
 public class RocketMQProducerProperties {
 
