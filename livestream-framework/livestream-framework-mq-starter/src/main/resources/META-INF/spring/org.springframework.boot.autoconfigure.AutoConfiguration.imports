@@ -1,0 +1,3 @@
+org.livestream.framework.mq.starter.properties.RocketMQConsumerProperties
+org.livestream.framework.mq.starter.properties.RocketMQProducerProperties
+org.livestream.framework.mq.starter.producer.RocketMQProducerConfig

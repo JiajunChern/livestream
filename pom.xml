@@ -5,37 +5,37 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.idea</groupId>
-    <artifactId>qiyu-live-app</artifactId>
+    <artifactId>livestream</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <packaging>pom</packaging>
     <modules>
-        <module>qiyu-live-user-interface</module>
-        <module>qiyu-live-user-provider</module>
-        <module>qiyu-live-api</module>
-        <module>qiyu-live-common-interface</module>
-        <module>qiyu-live-framework</module>
-        <module>qiyu-live-id-generate-interface</module>
-        <module>qiyu-live-id-generate-provider</module>
-        <module>qiyu-live-gateway</module>
-        <module>qiyu-live-msg-interface</module>
-        <module>qiyu-live-msg-provider</module>
-        <module>qiyu-live-account-provider</module>
-        <module>qiyu-live-account-interface</module>
-        <module>qiyu-live-im-core-server</module>
-        <module>qiyu-live-im-interface</module>
-        <module>qiyu-live-im-interface</module>
-        <module>qiyu-live-im-provider</module>
-        <module>qiyu-live-im-router-provider</module>
-        <module>qiyu-live-im-router-interface</module>
-        <module>qiyu-live-im-core-server-interfaces</module>
-        <module>qiyu-live-living-provider</module>
-        <module>qiyu-live-living-interface</module>
-        <module>qiyu-live-gift-provider</module>
-        <module>qiyu-live-gift-interface</module>
-        <module>qiyu-live-bank-provider</module>
-        <module>qiyu-live-bank-interface</module>
-        <module>qiyu-live-bank-api</module>
+        <module>livestream-user-interface</module>
+        <module>livestream-user-provider</module>
+        <module>livestream-api</module>
+        <module>livestream-common-interface</module>
+        <module>livestream-framework</module>
+        <module>livestream-id-generate-interface</module>
+        <module>livestream-id-generate-provider</module>
+        <module>livestream-gateway</module>
+        <module>livestream-msg-interface</module>
+        <module>livestream-msg-provider</module>
+        <module>livestream-account-provider</module>
+        <module>livestream-account-interface</module>
+        <module>livestream-im-core-server</module>
+        <module>livestream-im-interface</module>
+        <module>livestream-im-interface</module>
+        <module>livestream-im-provider</module>
+        <module>livestream-im-router-provider</module>
+        <module>livestream-im-router-interface</module>
+        <module>livestream-im-core-server-interfaces</module>
+        <module>livestream-living-provider</module>
+        <module>livestream-living-interface</module>
+        <module>livestream-gift-provider</module>
+        <module>livestream-gift-interface</module>
+        <module>livestream-bank-provider</module>
+        <module>livestream-bank-interface</module>
+        <module>livestream-bank-api</module>
     </modules>
 
     <properties>
@@ -47,7 +47,7 @@
         <springboot.version>3.0.4</springboot.version>
         <dubbo.version>3.2.0-beta.3</dubbo.version>
         <docker.registry.address>registry.baidubce.com</docker.registry.address>
-        <docker.registry.namespace>qiyu-live-test</docker.registry.namespace>
+        <docker.registry.namespace>livestream-dev</docker.registry.namespace>
         <spring-cloud-boostrap.version>3.0.2</spring-cloud-boostrap.version>
         <arthus.zip.address>/Users/linhao/env/arthus/</arthus.zip.address>
     </properties>

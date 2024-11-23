@@ -1,0 +1,9 @@
+org.idea.livestream.framework.redis.starter.config.RedisConfig
+org.idea.livestream.framework.redis.starter.key.UserProviderCacheKeyBuilder
+org.idea.livestream.framework.redis.starter.key.MsgProviderCacheKeyBuilder
+org.idea.livestream.framework.redis.starter.key.AccountProviderCacheKeyBuilder
+org.idea.livestream.framework.redis.starter.key.ImProviderCacheKeyBuilder
+org.idea.livestream.framework.redis.starter.key.ImCoreServerProviderCacheKeyBuilder
+org.idea.livestream.framework.redis.starter.key.LivingProviderCacheKeyBuilder
+org.idea.livestream.framework.redis.starter.key.GiftProviderCacheKeyBuilder
+org.idea.livestream.framework.redis.starter.key.BankProviderCacheKeyBuilder
