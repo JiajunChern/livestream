@@ -10,32 +10,32 @@
     <description>钱包服务</description>
 
     <properties>
-        <qiyu-live-bank-interface.version>1.0-SNAPSHOT</qiyu-live-bank-interface.version>
-        <qiyu-live-common-interface.version>1.0-SNAPSHOT</qiyu-live-common-interface.version>
+        <livestream-bank-interface.version>1.0-SNAPSHOT</livestream-bank-interface.version>
+        <livestream-common-interface.version>1.0-SNAPSHOT</livestream-common-interface.version>
         <mybatis-plus.version>3.5.3</mybatis-plus.version>
-        <qiyu-live-framework-redis-starter.version>1.0-SNAPSHOT</qiyu-live-framework-redis-starter.version>
-        <qiyu-live-framework-mq-starter.version>1.0-SNAPSHOT</qiyu-live-framework-mq-starter.version>
+        <livestream-framework-redis-starter.version>1.0-SNAPSHOT</livestream-framework-redis-starter.version>
+        <livestream-framework-mq-starter.version>1.0-SNAPSHOT</livestream-framework-mq-starter.version>
     </properties>
     <dependencies>
         <dependency>
             <groupId>org.idea</groupId>
             <artifactId>livestream-bank-interface</artifactId>
-            <version>${qiyu-live-bank-interface.version}</version>
+            <version>${livestream-bank-interface.version}</version>
         </dependency>
         <dependency>
             <groupId>org.idea</groupId>
             <artifactId>livestream-common-interface</artifactId>
-            <version>${qiyu-live-common-interface.version}</version>
+            <version>${livestream-common-interface.version}</version>
         </dependency>
         <dependency>
             <groupId>org.idea</groupId>
             <artifactId>livestream-framework-redis-starter</artifactId>
-            <version>${qiyu-live-framework-redis-starter.version}</version>
+            <version>${livestream-framework-redis-starter.version}</version>
         </dependency>
         <dependency>
             <groupId>org.idea</groupId>
             <artifactId>livestream-framework-mq-starter</artifactId>
-            <version>${qiyu-live-framework-mq-starter.version}</version>
+            <version>${livestream-framework-mq-starter.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.dubbo</groupId>
@@ -45,7 +45,7 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>${qiyu-mysql.version}</version>
+            <version>${livestream-mysql.version}</version>
         </dependency>
         <dependency>
             <groupId>com.baomidou</groupId>

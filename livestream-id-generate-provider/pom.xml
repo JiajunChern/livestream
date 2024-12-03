@@ -40,7 +40,7 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>${qiyu-mysql.version}</version>
+            <version>${livestream-mysql.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>

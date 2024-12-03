@@ -12,7 +12,7 @@
     <properties>
         <alibaba-fastjson.version>2.0.10</alibaba-fastjson.version>
         <netty-all.version>4.1.89.Final</netty-all.version>
-        <qiyu-live-redis-starter.version>1.0-SNAPSHOT</qiyu-live-redis-starter.version>
+        <livestream-redis-starter.version>1.0-SNAPSHOT</livestream-redis-starter.version>
     </properties>
 
     <dependencies>
@@ -54,7 +54,7 @@
         <dependency>
             <groupId>org.idea</groupId>
             <artifactId>livestream-framework-redis-starter</artifactId>
-            <version>${qiyu-live-redis-starter.version}</version>
+            <version>${livestream-redis-starter.version}</version>
         </dependency>
         <dependency>
             <groupId>com.alibaba.cloud</groupId>

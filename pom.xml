@@ -39,7 +39,7 @@
     </modules>
 
     <properties>
-        <qiyu-mysql.version>8.0.28</qiyu-mysql.version>
+        <livestream-mysql.version>8.0.28</livestream-mysql.version>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <maven.compiler.compilerVersion>17</maven.compiler.compilerVersion>

@@ -10,9 +10,9 @@
     <description>礼物模块</description>
 
     <properties>
-        <qiyu-live-redis-starter.version>1.0-SNAPSHOT</qiyu-live-redis-starter.version>
-        <qiyu-live-im-interface.version>1.0-SNAPSHOT</qiyu-live-im-interface.version>
-        <qiyu-live-common-interface.version>1.0-SNAPSHOT</qiyu-live-common-interface.version>
+        <livestream-redis-starter.version>1.0-SNAPSHOT</livestream-redis-starter.version>
+        <livestream-im-interface.version>1.0-SNAPSHOT</livestream-im-interface.version>
+        <livestream-common-interface.version>1.0-SNAPSHOT</livestream-common-interface.version>
         <mybatis-plus.version>3.5.3</mybatis-plus.version>
     </properties>
 
@@ -20,7 +20,7 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>${qiyu-mysql.version}</version>
+            <version>${livestream-mysql.version}</version>
         </dependency>
         <dependency>
             <groupId>com.baomidou</groupId>
@@ -30,12 +30,12 @@
         <dependency>
             <groupId>org.idea</groupId>
             <artifactId>livestream-common-interface</artifactId>
-            <version>${qiyu-live-common-interface.version}</version>
+            <version>${livestream-common-interface.version}</version>
         </dependency>
         <dependency>
             <groupId>org.idea</groupId>
             <artifactId>livestream-framework-redis-starter</artifactId>
-            <version>${qiyu-live-redis-starter.version}</version>
+            <version>${livestream-redis-starter.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.dubbo</groupId>

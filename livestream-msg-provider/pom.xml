@@ -13,9 +13,9 @@
     <properties>
         <sharding.jdbc.version>5.3.2</sharding.jdbc.version>
         <mybatis-plus.version>3.5.3</mybatis-plus.version>
-        <qiyu-live-msg-interface.version>1.0-SNAPSHOT</qiyu-live-msg-interface.version>
-        <qiyu-live-redis-starter.version>1.0-SNAPSHOT</qiyu-live-redis-starter.version>
-        <qiyu-live-common-interface.version>1.0-SNAPSHOT</qiyu-live-common-interface.version>
+        <livestream-msg-interface.version>1.0-SNAPSHOT</livestream-msg-interface.version>
+        <livestream-redis-starter.version>1.0-SNAPSHOT</livestream-redis-starter.version>
+        <livestream-common-interface.version>1.0-SNAPSHOT</livestream-common-interface.version>
         <cloopen-sms.version>1.0.4</cloopen-sms.version>
     </properties>
 
@@ -23,7 +23,7 @@
         <dependency>
             <groupId>org.idea</groupId>
             <artifactId>livestream-msg-interface</artifactId>
-            <version>${qiyu-live-msg-interface.version}</version>
+            <version>${livestream-msg-interface.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.dubbo</groupId>
@@ -61,7 +61,7 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>${qiyu-mysql.version}</version>
+            <version>${livestream-mysql.version}</version>
         </dependency>
         <dependency>
             <groupId>com.baomidou</groupId>
@@ -71,12 +71,12 @@
         <dependency>
             <groupId>org.idea</groupId>
             <artifactId>livestream-framework-redis-starter</artifactId>
-            <version>${qiyu-live-redis-starter.version}</version>
+            <version>${livestream-redis-starter.version}</version>
         </dependency>
         <dependency>
             <groupId>org.idea</groupId>
             <artifactId>livestream-common-interface</artifactId>
-            <version>${qiyu-live-common-interface.version}</version>
+            <version>${livestream-common-interface.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.shardingsphere</groupId>
