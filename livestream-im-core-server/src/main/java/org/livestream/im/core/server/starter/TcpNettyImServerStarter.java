@@ -89,7 +89,7 @@ public class TcpNettyImServerStarter implements InitializingBean {
                 }
             }
         });
-        nettyServerThread.setName("qiyu-live-im-server-tcp");
+        nettyServerThread.setName("livestream-im-server-tcp");
         nettyServerThread.start();
     }
 }

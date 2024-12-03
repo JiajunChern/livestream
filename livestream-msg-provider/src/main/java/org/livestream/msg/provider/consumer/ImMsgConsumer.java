@@ -46,15 +46,20 @@ public class ImMsgConsumer implements InitializingBean {
         mqPushConsumer.setConsumeMessageBatchMaxSize(10);
         mqPushConsumer.setConsumeFromWhere(ConsumeFromWhere.CONSUME_FROM_FIRST_OFFSET);
         //监听im发送过来的业务消息topic
-        mqPushConsumer.subscribe(ImCoreServerProviderTopicNames.QIYU_LIVE_IM_BIZ_MSG_TOPIC, "");
+        mqPushConsumer.subscribe(ImCoreServerProviderTopicNames.LIVESTREAM_IM_BIZ_MSG_TOPIC, "");
         mqPushConsumer.setMessageListener((MessageListenerConcurrently) (msgs, context) -> {
             for (MessageExt msg : msgs) {
-                ImMsgBody imMsgBody = JSON.parseObject(new String(msg.getBody()), ImMsgBody.class);
-                singleMessageHandler.onMsgReceive(imMsgBody);
+                try {
+                    ImMsgBody imMsgBody = JSON.parseObject(new String(msg.getBody()), ImMsgBody.class);
+                    singleMessageHandler.onMsgReceive(imMsgBody);
+                } catch (Exception e) {
+                    LOGGER.error("mq 消费者出现异常", e);
+                    return ConsumeConcurrentlyStatus.RECONSUME_LATER;
+                }
             }
             return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
         });
         mqPushConsumer.start();
-        LOGGER.info("mq消费者启动成功,namesrv is {}", rocketMQConsumerProperties.getNameSrv());
+        LOGGER.info("mq 消费者启动成功, namesrv is {}", rocketMQConsumerProperties.getNameSrv());
     }
 }

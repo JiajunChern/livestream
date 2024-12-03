@@ -46,7 +46,7 @@ public class RocketMQProducerConfig {
         defaultMQProducer.setAsyncSenderExecutor(asyncThreadPool);
         try {
             defaultMQProducer.start();
-            System.out.println("=============== mq生产者启动成功,namesrv is " + rocketMQProducerProperties.getNameSrv() + " ==================");
+            System.out.println("=============== mq 生产者启动成功, namesrv is " + rocketMQProducerProperties.getNameSrv() + " ==================");
         } catch (MQClientException e) {
             throw new RuntimeException(e);
         }

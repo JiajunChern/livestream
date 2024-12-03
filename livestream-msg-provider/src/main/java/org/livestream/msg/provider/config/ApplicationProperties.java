@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
  * @Date: Created in 09:05 2023/6/19
  * @Description
  */
-@ConfigurationProperties(prefix = "qiyu.sms.ccp")
+@ConfigurationProperties(prefix = "livestream.sms.ccp")
 @Configuration
 public class ApplicationProperties {
 

@@ -44,12 +44,12 @@ public class ImAckConsumer implements InitializingBean {
         //每次只拉取一条消息
         mqPushConsumer.setConsumeMessageBatchMaxSize(1);
         mqPushConsumer.setConsumeFromWhere(ConsumeFromWhere.CONSUME_FROM_FIRST_OFFSET);
-        mqPushConsumer.subscribe(ImCoreServerProviderTopicNames.QIYU_LIVE_IM_ACK_MSG_TOPIC, "");
+        mqPushConsumer.subscribe(ImCoreServerProviderTopicNames.LIVESTREAM_IM_ACK_MSG_TOPIC, "");
         mqPushConsumer.setMessageListener((MessageListenerConcurrently) (msgs, context) -> {
             String json = new String(msgs.get(0).getBody());
             ImMsgBody imMsgBody = JSON.parseObject(json, ImMsgBody.class);
             int retryTimes = msgAckCheckService.getMsgAckTimes(imMsgBody.getMsgId(), imMsgBody.getUserId(), imMsgBody.getAppId());
-            LOGGER.info("retryTimes is {},msgId is {}", retryTimes, imMsgBody.getMsgId());
+            LOGGER.info("retryTimes is {}, msgId is {}", retryTimes, imMsgBody.getMsgId());
             if (retryTimes < 0) {
                 return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
             }
@@ -64,7 +64,7 @@ public class ImAckConsumer implements InitializingBean {
             return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
         });
         mqPushConsumer.start();
-        LOGGER.info("mq消费者启动成功,namesrv is {}", rocketMQConsumerProperties.getNameSrv());
+        LOGGER.info("mq 消费者启动成功, namesrv is {}", rocketMQConsumerProperties.getNameSrv());
     }
 
 

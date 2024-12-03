@@ -63,7 +63,7 @@ public class LoginMsgHandler implements SimplyHandler {
         String token = imMsgBody.getToken();
         if (StringUtils.isEmpty(token) || userIdFromMsg < 10000 || appId < 10000) {
             ctx.close();
-            LOGGER.error("param error,imMsg is {}", imMsg);
+            LOGGER.error("param error, imMsg is {}", imMsg);
             throw new IllegalArgumentException("param error");
         }
         Long userId = imTokenRpc.getUserIdByToken(token);
@@ -124,7 +124,7 @@ public class LoginMsgHandler implements SimplyHandler {
         stringRedisTemplate.opsForValue().set(ImCoreServerConstants.IM_BIND_IP_KEY + appId + ":" + userId,
                 ChannelHandlerContextCache.getServerIpAddress() + "%" + userId,
                 ImConstants.DEFAULT_HEART_BEAT_GAP * 2, TimeUnit.SECONDS);
-        LOGGER.info("[LoginMsgHandler] login success,userId is {},appId is {}", userId, appId);
+        LOGGER.info("[LoginMsgHandler] login success, userId is {}, appId is {}", userId, appId);
         ctx.writeAndFlush(respMsg);
         sendLoginMQ(userId, appId, roomId);
     }

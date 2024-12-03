@@ -126,7 +126,7 @@ public class SendGiftConsumer implements InitializingBean {
             return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
         });
         mqPushConsumer.start();
-        LOGGER.info("mq消费者启动成功,namesrv is {}", rocketMQConsumerProperties.getNameSrv());
+        LOGGER.info("mq 消费者启动成功, namesrv is {}", rocketMQConsumerProperties.getNameSrv());
     }
 
 

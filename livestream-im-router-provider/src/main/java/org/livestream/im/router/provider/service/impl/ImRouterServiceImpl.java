@@ -38,7 +38,7 @@ public class ImRouterServiceImpl implements ImRouterService {
         if (StringUtils.isEmpty(bindAddress)) {
             return false;
         }
-        bindAddress = bindAddress.substring(0,bindAddress.indexOf("%"));
+        bindAddress = bindAddress.substring(0, bindAddress.indexOf("%"));
         RpcContext.getContext().set("ip", bindAddress);
         routerHandlerRpc.sendMsg(imMsgBody);
         return true;

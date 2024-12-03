@@ -98,7 +98,7 @@ public class WsNettyImServerStarter implements InitializingBean {
                 }
             }
         });
-        nettyServerThread.setName("qiyu-live-im-server-ws");
+        nettyServerThread.setName("livestream-im-server-ws");
         nettyServerThread.start();
     }
 }
