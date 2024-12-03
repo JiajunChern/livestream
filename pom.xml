@@ -24,7 +24,6 @@
         <module>livestream-account-interface</module>
         <module>livestream-im-core-server</module>
         <module>livestream-im-interface</module>
-        <module>livestream-im-interface</module>
         <module>livestream-im-provider</module>
         <module>livestream-im-router-provider</module>
         <module>livestream-im-router-interface</module>
@@ -49,7 +48,7 @@
         <docker.registry.address>registry.baidubce.com</docker.registry.address>
         <docker.registry.namespace>livestream-dev</docker.registry.namespace>
         <spring-cloud-boostrap.version>3.0.2</spring-cloud-boostrap.version>
-        <arthus.zip.address>/Users/linhao/env/arthus/</arthus.zip.address>
+        <arthus.zip.address>/Users/Alberta/env/arthus/</arthus.zip.address>
     </properties>
 
     <parent>
