@@ -7,7 +7,7 @@ import org.livestream.api.vo.req.LivingRoomReqVO;
 import org.livestream.api.vo.req.OnlinePkReqVO;
 import org.livestream.common.interfaces.vo.WebResponseVO;
 import org.livestream.web.starter.config.RequestLimit;
-import org.livestream.web.starter.context.QiyuRequestContext;
+import org.livestream.web.starter.context.LivestreamRequestContext;
 import org.livestream.web.starter.error.BizBaseErrorEnum;
 import org.livestream.web.starter.error.ErrorAssert;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -68,7 +68,7 @@ public class LivingRoomController {
      */
     @PostMapping("/anchorConfig")
     public WebResponseVO anchorConfig(Integer roomId) {
-        return WebResponseVO.success(livingRoomService.anchorConfig(QiyuRequestContext.getUserId(), roomId));
+        return WebResponseVO.success(livingRoomService.anchorConfig(LivestreamRequestContext.getUserId(), roomId));
     }
 
 }

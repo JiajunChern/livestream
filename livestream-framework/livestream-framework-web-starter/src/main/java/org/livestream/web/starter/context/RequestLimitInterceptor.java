@@ -4,7 +4,7 @@ import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.livestream.web.starter.config.RequestLimit;
-import org.livestream.web.starter.error.QiyuErrorException;
+import org.livestream.web.starter.error.LivestreamErrorException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -39,7 +39,7 @@ public class RequestLimitInterceptor implements HandlerInterceptor {
             if (hasLimit) {
                 //是否需要限制请求
                 RequestLimit requestLimit = handlerMethod.getMethod().getAnnotation(RequestLimit.class);
-                Long userId = QiyuRequestContext.getUserId();
+                Long userId = LivestreamRequestContext.getUserId();
                 if (userId == null) {
                     return true;
                 }
@@ -60,7 +60,7 @@ public class RequestLimitInterceptor implements HandlerInterceptor {
                 }
                 //直接抛出全局异常，让异常捕获器处理
                 LOGGER.error("[RequestLimitInterceptor] userId is {},req too much", userId);
-                throw new QiyuErrorException(-1, requestLimit.msg());
+                throw new LivestreamErrorException(-1, requestLimit.msg());
             } else {
                 return true;
             }

@@ -55,6 +55,7 @@ public class SingleMessageHandlerImpl implements MessageHandler {
             //将消息推送给router进行转发给im服务器
             LOGGER.info("mq 消费消息 {}", respMsgBody);
             routerRpc.sendMsg(respMsgBody);
+            return;
         }
 
         //直播间的聊天消息

@@ -13,7 +13,7 @@ import java.util.Map;
  * @Date: Created in 08:58 2023/6/25
  * @Description
  */
-public class QiyuRequestContext {
+public class LivestreamRequestContext {
 
     private static final ThreadLocal<Map<Object, Object>> resources = new InheritableThreadLocalMap<>();
 

@@ -1,14 +1,14 @@
 package org.livestream.api.error;
 
 import org.livestream.web.starter.constants.ErrorAppIdEnum;
-import org.livestream.web.starter.error.QiyuBaseError;
+import org.livestream.web.starter.error.LivestreamBaseError;
 
 /**
  * @Author idea
  * @Date: Created in 15:41 2023/8/2
  * @Description
  */
-public enum ApiErrorEnum implements QiyuBaseError {
+public enum ApiErrorEnum implements LivestreamBaseError {
 
     PHONE_IS_EMPTY(1, "手机号不能为空"),
     PHONE_IN_VALID(2,"手机号格式异常"),

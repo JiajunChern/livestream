@@ -6,7 +6,7 @@ import org.livestream.api.service.ImService;
 import org.livestream.api.vo.resp.ImConfigVO;
 import org.livestream.im.constants.AppIdEnum;
 import org.livestream.im.interfaces.ImTokenRpc;
-import org.livestream.web.starter.context.QiyuRequestContext;
+import org.livestream.web.starter.context.LivestreamRequestContext;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.stereotype.Service;
@@ -30,7 +30,7 @@ public class ImServiceImpl implements ImService {
     @Override
     public ImConfigVO getImConfig() {
         ImConfigVO imConfigVO = new ImConfigVO();
-        imConfigVO.setToken(imTokenRpc.createImLoginToken(QiyuRequestContext.getUserId(), AppIdEnum.QIYU_LIVE_BIZ.getCode()));
+        imConfigVO.setToken(imTokenRpc.createImLoginToken(LivestreamRequestContext.getUserId(), AppIdEnum.QIYU_LIVE_BIZ.getCode()));
         buildImServerAddress(imConfigVO);
         return imConfigVO;
     }

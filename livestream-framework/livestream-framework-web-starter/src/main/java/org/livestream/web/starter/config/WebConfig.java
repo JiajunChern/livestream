@@ -1,6 +1,6 @@
 package org.livestream.web.starter.config;
 
-import org.livestream.web.starter.context.QiyuUserInfoInterceptor;
+import org.livestream.web.starter.context.LivestreamUserInfoInterceptor;
 import org.livestream.web.starter.context.RequestLimitInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,8 +11,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class WebConfig implements WebMvcConfigurer {
 
     @Bean
-    public QiyuUserInfoInterceptor qiyuUserInfoInterceptor() {
-        return new QiyuUserInfoInterceptor();
+    public LivestreamUserInfoInterceptor qiyuUserInfoInterceptor() {
+        return new LivestreamUserInfoInterceptor();
     }
 
     @Bean

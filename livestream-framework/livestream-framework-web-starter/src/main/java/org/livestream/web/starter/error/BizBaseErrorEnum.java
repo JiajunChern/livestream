@@ -5,7 +5,7 @@ package org.livestream.web.starter.error;
  * @Date: Created in 11:25 2023/8/2
  * @Description
  */
-public enum BizBaseErrorEnum implements QiyuBaseError{
+public enum BizBaseErrorEnum implements LivestreamBaseError{
 
     PARAM_ERROR(100001,"参数异常"),
     TOKEN_ERROR(100002,"用户token异常");

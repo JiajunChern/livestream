@@ -4,7 +4,7 @@ import jakarta.annotation.Resource;
 import org.livestream.api.service.IHomePageService;
 import org.livestream.api.vo.HomePageVO;
 import org.livestream.common.interfaces.vo.WebResponseVO;
-import org.livestream.web.starter.context.QiyuRequestContext;
+import org.livestream.web.starter.context.LivestreamRequestContext;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,7 +23,7 @@ public class HomePageController {
 
     @PostMapping("/initPage")
     public WebResponseVO initPage() {
-        Long userId = QiyuRequestContext.getUserId();
+        Long userId = LivestreamRequestContext.getUserId();
         HomePageVO homePageVO = new HomePageVO();
         homePageVO.setLoginStatus(false);
         if (userId != null) {

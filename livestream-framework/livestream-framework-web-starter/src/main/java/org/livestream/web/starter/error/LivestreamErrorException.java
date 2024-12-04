@@ -5,17 +5,17 @@ package org.livestream.web.starter.error;
  * @Date: Created in 11:15 2023/8/2
  * @Description
  */
-public class QiyuErrorException extends RuntimeException{
+public class LivestreamErrorException extends RuntimeException {
 
     private int errorCode;
     private String errorMsg;
 
-    public QiyuErrorException(int errorCode,String errorMsg) {
+    public LivestreamErrorException(int errorCode, String errorMsg) {
         this.errorCode = errorCode;
         this.errorMsg = errorMsg;
     }
 
-    public QiyuErrorException(QiyuBaseError qiyuBaseError) {
+    public LivestreamErrorException(LivestreamBaseError qiyuBaseError) {
         this.errorCode = qiyuBaseError.getErrorCode();
         this.errorMsg = qiyuBaseError.getErrorMsg();
     }

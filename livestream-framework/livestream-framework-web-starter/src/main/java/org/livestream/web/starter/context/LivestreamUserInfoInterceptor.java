@@ -15,7 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
  * @Date: Created in 08:48 2023/6/25
  * @Description
  */
-public class QiyuUserInfoInterceptor implements HandlerInterceptor {
+public class LivestreamUserInfoInterceptor implements HandlerInterceptor {
 
     //所有web请求来到这里的时候，都要被拦截
     @Override
@@ -27,12 +27,12 @@ public class QiyuUserInfoInterceptor implements HandlerInterceptor {
             return true;
         }
         //如果userId不为空，则把它放在线程本地变量里面去
-        QiyuRequestContext.set(RequestConstants.QIYU_USER_ID, Long.valueOf(userIdStr));
+        LivestreamRequestContext.set(RequestConstants.QIYU_USER_ID, Long.valueOf(userIdStr));
         return true;
     }
 
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-        QiyuRequestContext.clear();
+        LivestreamRequestContext.clear();
     }
 }

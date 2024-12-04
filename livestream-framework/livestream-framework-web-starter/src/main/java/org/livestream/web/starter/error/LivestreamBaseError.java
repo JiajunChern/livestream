@@ -5,7 +5,7 @@ package org.livestream.web.starter.error;
  * @Date: Created in 11:26 2023/8/2
  * @Description
  */
-public interface QiyuBaseError {
+public interface LivestreamBaseError {
 
     int getErrorCode();
     String getErrorMsg();

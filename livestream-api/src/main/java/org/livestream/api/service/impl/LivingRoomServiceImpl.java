@@ -18,9 +18,9 @@ import org.livestream.living.interfaces.dto.LivingRoomRespDTO;
 import org.livestream.living.interfaces.rpc.ILivingRoomRpc;
 import org.livestream.user.dto.UserDTO;
 import org.livestream.user.interfaces.IUserRpc;
-import org.livestream.web.starter.context.QiyuRequestContext;
+import org.livestream.web.starter.context.LivestreamRequestContext;
 import org.livestream.web.starter.error.ErrorAssert;
-import org.livestream.web.starter.error.QiyuErrorException;
+import org.livestream.web.starter.error.LivestreamErrorException;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -52,11 +52,11 @@ public class LivingRoomServiceImpl implements ILivingRoomService {
 
     @Override
     public Integer startingLiving(Integer type) {
-        Long userId = QiyuRequestContext.getUserId();
+        Long userId = LivestreamRequestContext.getUserId();
         UserDTO userDTO = userRpc.getByUserId(userId);
         LivingRoomReqDTO livingRoomReqDTO = new LivingRoomReqDTO();
         livingRoomReqDTO.setAnchorId(userId);
-        livingRoomReqDTO.setRoomName("主播-" + QiyuRequestContext.getUserId() + "的直播间");
+        livingRoomReqDTO.setRoomName("主播-" + LivestreamRequestContext.getUserId() + "的直播间");
         livingRoomReqDTO.setCovertImg(userDTO.getAvatar());
         livingRoomReqDTO.setType(type);
         return livingRoomRpc.startLivingRoom(livingRoomReqDTO);
@@ -66,9 +66,9 @@ public class LivingRoomServiceImpl implements ILivingRoomService {
     public boolean onlinePk(OnlinePkReqVO onlinePkReqVO) {
         LivingRoomReqDTO reqDTO = ConvertBeanUtils.convert(onlinePkReqVO,LivingRoomReqDTO.class);
         reqDTO.setAppId(AppIdEnum.QIYU_LIVE_BIZ.getCode());
-        reqDTO.setPkObjId(QiyuRequestContext.getUserId());
+        reqDTO.setPkObjId(LivestreamRequestContext.getUserId());
         LivingPkRespDTO tryOnlineStatus = livingRoomRpc.onlinePk(reqDTO);
-        ErrorAssert.isTure(tryOnlineStatus.isOnlineStatus(), new QiyuErrorException(-1,tryOnlineStatus.getMsg()));
+        ErrorAssert.isTure(tryOnlineStatus.isOnlineStatus(), new LivestreamErrorException(-1,tryOnlineStatus.getMsg()));
         return true;
     }
 
@@ -76,7 +76,7 @@ public class LivingRoomServiceImpl implements ILivingRoomService {
     public boolean closeLiving(Integer roomId) {
         LivingRoomReqDTO livingRoomReqDTO = new LivingRoomReqDTO();
         livingRoomReqDTO.setRoomId(roomId);
-        livingRoomReqDTO.setAnchorId(QiyuRequestContext.getUserId());
+        livingRoomReqDTO.setAnchorId(LivestreamRequestContext.getUserId());
         return livingRoomRpc.closeLiving(livingRoomReqDTO);
     }
 

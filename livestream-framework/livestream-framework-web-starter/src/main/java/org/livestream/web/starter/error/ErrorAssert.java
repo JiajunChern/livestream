@@ -15,9 +15,9 @@ public class ErrorAssert {
      * @param obj
      * @param qiyuBaseError
      */
-    public static void isNotNull(Object obj, QiyuBaseError qiyuBaseError) {
+    public static void isNotNull(Object obj, LivestreamBaseError qiyuBaseError) {
         if (obj == null) {
-            throw new QiyuErrorException(qiyuBaseError);
+            throw new LivestreamErrorException(qiyuBaseError);
         }
     }
 
@@ -27,9 +27,9 @@ public class ErrorAssert {
      * @param str
      * @param qiyuBaseError
      */
-    public static void isNotBlank(String str, QiyuBaseError qiyuBaseError) {
+    public static void isNotBlank(String str, LivestreamBaseError qiyuBaseError) {
         if (str == null || str.trim().length() == 0) {
-            throw new QiyuErrorException(qiyuBaseError);
+            throw new LivestreamErrorException(qiyuBaseError);
         }
     }
 
@@ -39,9 +39,9 @@ public class ErrorAssert {
      * @param flag
      * @param qiyuBaseError
      */
-    public static void isTure(boolean flag, QiyuBaseError qiyuBaseError) {
+    public static void isTure(boolean flag, LivestreamBaseError qiyuBaseError) {
         if (!flag) {
-            throw new QiyuErrorException(qiyuBaseError);
+            throw new LivestreamErrorException(qiyuBaseError);
         }
     }
 
@@ -51,7 +51,7 @@ public class ErrorAssert {
      * @param flag
      * @param qiyuErrorException
      */
-    public static void isTure(boolean flag, QiyuErrorException qiyuErrorException) {
+    public static void isTure(boolean flag, LivestreamErrorException qiyuErrorException) {
         if (!flag) {
             throw qiyuErrorException;
         }

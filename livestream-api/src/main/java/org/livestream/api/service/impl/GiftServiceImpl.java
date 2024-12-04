@@ -17,7 +17,7 @@ import org.livestream.common.interfaces.topic.GiftProviderTopicNames;
 import org.livestream.common.interfaces.utils.ConvertBeanUtils;
 import org.livestream.gift.dto.GiftConfigDTO;
 import org.livestream.gift.interfaces.IGiftConfigRpc;
-import org.livestream.web.starter.context.QiyuRequestContext;
+import org.livestream.web.starter.context.LivestreamRequestContext;
 import org.livestream.web.starter.error.ErrorAssert;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -60,7 +60,7 @@ public class GiftServiceImpl implements IGiftService {
         ErrorAssert.isNotNull(giftConfigDTO, ApiErrorEnum.GIFT_CONFIG_ERROR);
         ErrorAssert.isTure(!giftReqVO.getReceiverId().equals(giftReqVO.getSenderUserId()), ApiErrorEnum.NOT_SEND_TO_YOURSELF);
         SendGiftMq sendGiftMq = new SendGiftMq();
-        sendGiftMq.setUserId(QiyuRequestContext.getUserId());
+        sendGiftMq.setUserId(LivestreamRequestContext.getUserId());
         sendGiftMq.setGiftId(giftId);
         sendGiftMq.setRoomId(giftReqVO.getRoomId());
         sendGiftMq.setReceiverId(giftReqVO.getReceiverId());

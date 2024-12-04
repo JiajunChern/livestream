@@ -26,9 +26,9 @@ public class GlobalExceptionHandler {
     }
 
 
-    @ExceptionHandler(value = QiyuErrorException.class)
+    @ExceptionHandler(value = LivestreamErrorException.class)
     @ResponseBody
-    public WebResponseVO sysErrorHandler(HttpServletRequest request, QiyuErrorException e) {
+    public WebResponseVO sysErrorHandler(HttpServletRequest request, LivestreamErrorException e) {
         //业务异常，参数传递有误,都会走到这里
         LOGGER.error(request.getRequestURI() + ",error code is {},error msg is {}", e.getErrorCode(), e.getErrorMsg());
         return WebResponseVO.bizError(e.getErrorCode(), e.getErrorMsg());

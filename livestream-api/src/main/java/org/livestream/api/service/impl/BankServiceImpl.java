@@ -16,7 +16,7 @@ import org.livestream.bank.interfaces.IPayOrderRpc;
 import org.livestream.bank.interfaces.IPayProductRpc;
 import org.livestream.bank.interfaces.IQiyuCurrencyAccountRpc;
 import org.livestream.bank.constants.PaySourceEnum;
-import org.livestream.web.starter.context.QiyuRequestContext;
+import org.livestream.web.starter.context.LivestreamRequestContext;
 import org.livestream.web.starter.error.BizBaseErrorEnum;
 import org.livestream.web.starter.error.ErrorAssert;
 import org.springframework.http.ResponseEntity;
@@ -55,7 +55,7 @@ public class BankServiceImpl implements IBankService {
             itemList.add(itemVO);
         }
         payProductVO.setPayProductItemVOList(itemList);
-        payProductVO.setCurrentBalance(Optional.ofNullable(qiyuCurrencyAccountRpc.getBalance(QiyuRequestContext.getUserId())).orElse(0));
+        payProductVO.setCurrentBalance(Optional.ofNullable(qiyuCurrencyAccountRpc.getBalance(LivestreamRequestContext.getUserId())).orElse(0));
         return payProductVO;
     }
 
@@ -70,7 +70,7 @@ public class BankServiceImpl implements IBankService {
         //插入一条订单，待支付状态
         PayOrderDTO payOrderDTO = new PayOrderDTO();
         payOrderDTO.setProductId(payProductReqVO.getProductId());
-        payOrderDTO.setUserId(QiyuRequestContext.getUserId());
+        payOrderDTO.setUserId(LivestreamRequestContext.getUserId());
         payOrderDTO.setSource(payProductReqVO.getPaySource());
         payOrderDTO.setPayChannel(payProductReqVO.getPayChannel());
         String orderId = payOrderRpc.insertOne(payOrderDTO);
@@ -83,7 +83,7 @@ public class BankServiceImpl implements IBankService {
         //todo 远程http请求 resttemplate-》支付回调接口
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("orderId", orderId);
-        jsonObject.put("userId", QiyuRequestContext.getUserId());
+        jsonObject.put("userId", LivestreamRequestContext.getUserId());
         jsonObject.put("bizCode", 10001);
         HashMap<String,String> paramMap = new HashMap<>();
         paramMap.put("param",jsonObject.toJSONString());
