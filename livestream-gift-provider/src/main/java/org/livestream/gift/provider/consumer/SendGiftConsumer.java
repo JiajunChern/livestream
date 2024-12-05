@@ -12,7 +12,7 @@ import org.apache.rocketmq.common.message.MessageExt;
 import org.idea.livestream.framework.redis.starter.key.GiftProviderCacheKeyBuilder;
 import org.livestream.bank.dto.AccountTradeReqDTO;
 import org.livestream.bank.dto.AccountTradeRespDTO;
-import org.livestream.bank.interfaces.IQiyuCurrencyAccountRpc;
+import org.livestream.bank.interfaces.ICurrencyAccountRpc;
 import org.livestream.common.interfaces.dto.SendGiftMq;
 import org.livestream.common.interfaces.topic.GiftProviderTopicNames;
 import org.livestream.framework.mq.starter.properties.RocketMQConsumerProperties;
@@ -69,7 +69,7 @@ public class SendGiftConsumer implements InitializingBean {
     @Resource
     private GiftProviderCacheKeyBuilder cacheKeyBuilder;
     @DubboReference
-    private IQiyuCurrencyAccountRpc qiyuCurrencyAccountRpc;
+    private ICurrencyAccountRpc currencyAccountRpc;
     @DubboReference
     private ILivingRoomRpc livingRoomRpc;
     @DubboReference
@@ -98,7 +98,7 @@ public class SendGiftConsumer implements InitializingBean {
                 AccountTradeReqDTO tradeReqDTO = new AccountTradeReqDTO();
                 tradeReqDTO.setUserId(sendGiftMq.getUserId());
                 tradeReqDTO.setNum(sendGiftMq.getPrice());
-                AccountTradeRespDTO tradeRespDTO = qiyuCurrencyAccountRpc.consumeForSendGift(tradeReqDTO);
+                AccountTradeRespDTO tradeRespDTO = currencyAccountRpc.consumeForSendGift(tradeReqDTO);
                 //如果余额扣减成功
                 Integer sendGiftType = sendGiftMq.getType();
                 JSONObject jsonObject = new JSONObject();

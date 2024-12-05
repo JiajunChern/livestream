@@ -8,7 +8,7 @@ import org.livestream.bank.dto.AccountTradeRespDTO;
  * @Date: Created in 10:28 2023/8/6
  * @Description
  */
-public interface IQiyuCurrencyAccountRpc {
+public interface ICurrencyAccountRpc {
 
     /**
      * 增加虚拟币

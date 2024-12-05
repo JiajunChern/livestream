@@ -13,25 +13,16 @@ import java.util.Date;
  * @Date: Created in 10:21 2023/8/6
  * @Description
  */
-@TableName("t_qiyu_currency_trade")
-public class QiyuCurrencyTradePO {
+@TableName("t_currency_account")
+public class CurrencyAccountPO {
 
-    @TableId(type = IdType.AUTO)
-    private Long id;
+    @TableId(type = IdType.INPUT)
     private Long userId;
-    private Integer num;
-    private Integer type;
+    private int currentBalance;
+    private int totalCharged;
     private Integer status;
     private Date createTime;
     private Date updateTime;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public Long getUserId() {
         return userId;
@@ -41,20 +32,20 @@ public class QiyuCurrencyTradePO {
         this.userId = userId;
     }
 
-    public Integer getNum() {
-        return num;
+    public Integer getCurrentBalance() {
+        return currentBalance;
     }
 
-    public void setNum(Integer num) {
-        this.num = num;
+    public void setCurrentBalance(Integer currentBalance) {
+        this.currentBalance = currentBalance;
     }
 
-    public Integer getType() {
-        return type;
+    public Integer getTotalCharged() {
+        return totalCharged;
     }
 
-    public void setType(Integer type) {
-        this.type = type;
+    public void setTotalCharged(Integer totalCharged) {
+        this.totalCharged = totalCharged;
     }
 
     public Integer getStatus() {
@@ -83,11 +74,10 @@ public class QiyuCurrencyTradePO {
 
     @Override
     public String toString() {
-        return "QiyuCurrencyTradePO{" +
-                "id=" + id +
-                ", userId=" + userId +
-                ", num=" + num +
-                ", type=" + type +
+        return "CurrencyAccount{" +
+                "userId=" + userId +
+                ", currentBalance=" + currentBalance +
+                ", totalCharged=" + totalCharged +
                 ", status=" + status +
                 ", createTime=" + createTime +
                 ", updateTime=" + updateTime +

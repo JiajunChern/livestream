@@ -5,10 +5,10 @@ import org.idea.livestream.framework.redis.starter.key.BankProviderCacheKeyBuild
 import org.livestream.bank.constants.TradeTypeEnum;
 import org.livestream.bank.dto.AccountTradeReqDTO;
 import org.livestream.bank.dto.AccountTradeRespDTO;
-import org.livestream.bank.provider.dao.maper.IQiyuCurrencyAccountMapper;
-import org.livestream.bank.provider.dao.po.QiyuCurrencyAccountPO;
-import org.livestream.bank.provider.service.IQiyuCurrencyAccountService;
-import org.livestream.bank.provider.service.IQiyuCurrencyTradeService;
+import org.livestream.bank.provider.dao.maper.ICurrencyAccountMapper;
+import org.livestream.bank.provider.dao.po.CurrencyAccountPO;
+import org.livestream.bank.provider.service.ICurrencyAccountService;
+import org.livestream.bank.provider.service.ICurrencyTradeService;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,25 +23,25 @@ import java.util.concurrent.TimeUnit;
  * @Description
  */
 @Service
-public class QiyuCurrencyAccountServiceImpl implements IQiyuCurrencyAccountService {
+public class CurrencyAccountServiceImpl implements ICurrencyAccountService {
 
     @Resource
-    private IQiyuCurrencyAccountMapper qiyuCurrencyAccountMapper;
+    private ICurrencyAccountMapper currencyAccountMapper;
     @Resource
     private RedisTemplate<String, Object> redisTemplate;
     @Resource
     private BankProviderCacheKeyBuilder cacheKeyBuilder;
     @Resource
-    private IQiyuCurrencyTradeService currencyTradeService;
+    private ICurrencyTradeService currencyTradeService;
 
     private static ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(2, 4, 30, TimeUnit.SECONDS, new ArrayBlockingQueue<>(1000));
 
     @Override
     public boolean insertOne(long userId) {
         try {
-            QiyuCurrencyAccountPO accountPO = new QiyuCurrencyAccountPO();
+            CurrencyAccountPO accountPO = new CurrencyAccountPO();
             accountPO.setUserId(userId);
-            qiyuCurrencyAccountMapper.insert(accountPO);
+            currencyAccountMapper.insert(accountPO);
             return true;
         } catch (Exception e) {
         }
@@ -95,7 +95,7 @@ public class QiyuCurrencyAccountServiceImpl implements IQiyuCurrencyAccountServi
             }
             return (Integer) cacheBalance;
         }
-        Integer currentBalance = qiyuCurrencyAccountMapper.queryBalance(userId);
+        Integer currentBalance = currencyAccountMapper.queryBalance(userId);
         if (currentBalance == null) {
             redisTemplate.opsForValue().set(cacheKey, -1, 5, TimeUnit.MINUTES);
             return null;
@@ -120,7 +120,7 @@ public class QiyuCurrencyAccountServiceImpl implements IQiyuCurrencyAccountServi
     @Transactional(rollbackFor = Exception.class)
     public void consumeIncrDBHandler(long userId, int num) {
         //更新db，插入db
-        qiyuCurrencyAccountMapper.incr(userId, num);
+        currencyAccountMapper.incr(userId, num);
         //流水记录
         currencyTradeService.insertOne(userId, num, TradeTypeEnum.SEND_GIFT_TRADE.getCode());
     }
@@ -128,7 +128,7 @@ public class QiyuCurrencyAccountServiceImpl implements IQiyuCurrencyAccountServi
     @Transactional(rollbackFor = Exception.class)
     public void consumeDecrDBHandler(long userId, int num) {
         //更新db，插入db
-        qiyuCurrencyAccountMapper.decr(userId, num);
+        currencyAccountMapper.decr(userId, num);
         //流水记录
         currencyTradeService.insertOne(userId, num * -1, TradeTypeEnum.SEND_GIFT_TRADE.getCode());
     }
@@ -139,7 +139,7 @@ public class QiyuCurrencyAccountServiceImpl implements IQiyuCurrencyAccountServi
 //        long userId = accountTradeReqDTO.getUserId();
 //        int num = accountTradeReqDTO.getNum();
 //        //首先判断账户余额是否充足，考虑无记录的情况
-//        QiyuCurrencyAccountDTO accountDTO = this.getByUserId(userId);
+//        CurrencyAccountDTO accountDTO = this.getByUserId(userId);
 //        if (accountDTO == null) {
 //            return AccountTradeRespDTO.buildFail(userId, "账户未有初始化", 1);
 //        }

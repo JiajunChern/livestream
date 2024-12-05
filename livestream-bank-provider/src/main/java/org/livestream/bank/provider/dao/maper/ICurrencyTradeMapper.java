@@ -2,7 +2,7 @@ package org.livestream.bank.provider.dao.maper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
-import org.livestream.bank.provider.dao.po.QiyuCurrencyTradePO;
+import org.livestream.bank.provider.dao.po.CurrencyTradePO;
 
 /**
  * @Author idea
@@ -10,5 +10,5 @@ import org.livestream.bank.provider.dao.po.QiyuCurrencyTradePO;
  * @Description
  */
 @Mapper
-public interface IQiyuCurrencyTradeMapper extends BaseMapper<QiyuCurrencyTradePO> {
+public interface ICurrencyTradeMapper extends BaseMapper<CurrencyTradePO> {
 }

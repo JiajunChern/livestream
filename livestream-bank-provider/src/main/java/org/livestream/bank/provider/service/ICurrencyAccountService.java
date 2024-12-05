@@ -8,7 +8,7 @@ import org.livestream.bank.dto.AccountTradeRespDTO;
  * @Date: Created in 10:24 2023/8/6
  * @Description
  */
-public interface IQiyuCurrencyAccountService {
+public interface ICurrencyAccountService {
 
     /**
      * 新增账户

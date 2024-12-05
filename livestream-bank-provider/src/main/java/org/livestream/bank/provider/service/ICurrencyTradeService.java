@@ -5,7 +5,7 @@ package org.livestream.bank.provider.service;
  * @Date: Created in 21:16 2023/8/7
  * @Description
  */
-public interface IQiyuCurrencyTradeService {
+public interface ICurrencyTradeService {
 
     /**
      * 插入一条流水记录

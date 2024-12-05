@@ -11,7 +11,7 @@ import org.livestream.api.error.ApiErrorEnum;
 import org.livestream.api.service.IGiftService;
 import org.livestream.api.vo.req.GiftReqVO;
 import org.livestream.api.vo.resp.GiftConfigVO;
-import org.livestream.bank.interfaces.IQiyuCurrencyAccountRpc;
+import org.livestream.bank.interfaces.ICurrencyAccountRpc;
 import org.livestream.common.interfaces.dto.SendGiftMq;
 import org.livestream.common.interfaces.topic.GiftProviderTopicNames;
 import org.livestream.common.interfaces.utils.ConvertBeanUtils;
@@ -41,7 +41,7 @@ public class GiftServiceImpl implements IGiftService {
     @DubboReference
     private IGiftConfigRpc giftConfigRpc;
     @DubboReference
-    private IQiyuCurrencyAccountRpc qiyuCurrencyAccountRpc;
+    private ICurrencyAccountRpc currencyAccountRpc;
     @Resource
     private MQProducer mqProducer;
     private Cache<Integer,GiftConfigDTO> giftConfigDTOCache = Caffeine.newBuilder().maximumSize(1000).expireAfterWrite(90, TimeUnit.SECONDS).build();

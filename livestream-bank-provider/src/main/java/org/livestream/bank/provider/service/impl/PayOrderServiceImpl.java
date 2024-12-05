@@ -43,9 +43,9 @@ public class PayOrderServiceImpl implements IPayOrderService {
     @Resource
     private MQProducer mqProducer;
     @Resource
-    private IQiyuCurrencyAccountService qiyuCurrencyAccountService;
+    private ICurrencyAccountService currencyAccountService;
     @Resource
-    private IQiyuCurrencyTradeService qiyuCurrencyTradeService;
+    private ICurrencyTradeService currencyTradeService;
 
     @Override
     public PayOrderPO queryByOrderId(String orderId) {
@@ -126,7 +126,7 @@ public class PayOrderServiceImpl implements IPayOrderService {
             Long userId = payOrderPO.getUserId();
             JSONObject jsonObject = JSON.parseObject(payProductDTO.getExtra());
             Integer num = jsonObject.getInteger("coin");
-            qiyuCurrencyAccountService.incr(userId,num);
+            currencyAccountService.incr(userId,num);
         }
     }
 }

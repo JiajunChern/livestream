@@ -7,7 +7,7 @@ package org.livestream.web.starter.constants;
  */
 public enum ErrorAppIdEnum {
 
-    QIYU_API_ERROR(101,"qiyu-live-api");
+    LIVESTREAM_API_ERROR(101, "livestream-api");
 
     ErrorAppIdEnum(int code, String msg) {
         this.code = code;

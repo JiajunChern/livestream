@@ -11,7 +11,7 @@ import java.util.Date;
  * @Date: Created in 10:26 2023/8/6
  * @Description
  */
-public class QiyuCurrencyAccountDTO implements Serializable {
+public class CurrencyAccountDTO implements Serializable {
     @Serial
     private static final long serialVersionUID = -1270392385831310569L;
 
@@ -72,7 +72,7 @@ public class QiyuCurrencyAccountDTO implements Serializable {
 
     @Override
     public String toString() {
-        return "QiyuCurrencyAccountDTO{" +
+        return "CurrencyAccountDTO{" +
                 "userId=" + userId +
                 ", currentBalance=" + currentBalance +
                 ", totalCharged=" + totalCharged +

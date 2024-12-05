@@ -39,8 +39,8 @@ CREATE TABLE `t_pay_topic` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='支付主题配置表';
 
--- Create syntax for TABLE 't_qiyu_currency_account'
-CREATE TABLE `t_qiyu_currency_account` (
+-- Create syntax for TABLE 't_currency_account'
+CREATE TABLE `t_currency_account` (
   `user_id` bigint unsigned NOT NULL COMMENT '用户id',
   `current_balance` int DEFAULT NULL COMMENT '当前余额',
   `total_charged` int DEFAULT NULL COMMENT '累计充值',
@@ -50,8 +50,8 @@ CREATE TABLE `t_qiyu_currency_account` (
   PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='账户余额表';
 
--- Create syntax for TABLE 't_qiyu_currency_trade'
-CREATE TABLE `t_qiyu_currency_trade` (
+-- Create syntax for TABLE 't_currency_trade'
+CREATE TABLE `t_currency_trade` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `user_id` bigint DEFAULT NULL COMMENT '用户id',
   `num` int DEFAULT NULL COMMENT '流水金额（单位：分）',

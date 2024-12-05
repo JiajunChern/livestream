@@ -14,7 +14,7 @@ import org.livestream.bank.dto.PayOrderDTO;
 import org.livestream.bank.dto.PayProductDTO;
 import org.livestream.bank.interfaces.IPayOrderRpc;
 import org.livestream.bank.interfaces.IPayProductRpc;
-import org.livestream.bank.interfaces.IQiyuCurrencyAccountRpc;
+import org.livestream.bank.interfaces.ICurrencyAccountRpc;
 import org.livestream.bank.constants.PaySourceEnum;
 import org.livestream.web.starter.context.LivestreamRequestContext;
 import org.livestream.web.starter.error.BizBaseErrorEnum;
@@ -36,7 +36,7 @@ public class BankServiceImpl implements IBankService {
     @DubboReference
     private IPayProductRpc payProductRpc;
     @DubboReference
-    private IQiyuCurrencyAccountRpc qiyuCurrencyAccountRpc;
+    private ICurrencyAccountRpc currencyAccountRpc;
     @DubboReference
     private IPayOrderRpc payOrderRpc;
     @Resource
@@ -55,7 +55,7 @@ public class BankServiceImpl implements IBankService {
             itemList.add(itemVO);
         }
         payProductVO.setPayProductItemVOList(itemList);
-        payProductVO.setCurrentBalance(Optional.ofNullable(qiyuCurrencyAccountRpc.getBalance(LivestreamRequestContext.getUserId())).orElse(0));
+        payProductVO.setCurrentBalance(Optional.ofNullable(currencyAccountRpc.getBalance(LivestreamRequestContext.getUserId())).orElse(0));
         return payProductVO;
     }
 

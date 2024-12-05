@@ -30,7 +30,7 @@ public enum ApiErrorEnum implements LivestreamBaseError {
 
     @Override
     public int getErrorCode() {
-        return Integer.parseInt(ErrorAppIdEnum.QIYU_API_ERROR.getCode() + "" + errorCode);
+        return Integer.parseInt(ErrorAppIdEnum.LIVESTREAM_API_ERROR.getCode() + "" + errorCode);
     }
 
     @Override
