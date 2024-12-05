@@ -7,7 +7,7 @@ package org.livestream.im.constants;
  */
 public enum AppIdEnum {
 
-    QIYU_LIVE_BIZ(10001,"旗鱼直播业务");
+    QIYU_LIVE_BIZ(10001,"直播业务");
 
     int code;
     String desc;

@@ -15,9 +15,9 @@ public class LivestreamErrorException extends RuntimeException {
         this.errorMsg = errorMsg;
     }
 
-    public LivestreamErrorException(LivestreamBaseError qiyuBaseError) {
-        this.errorCode = qiyuBaseError.getErrorCode();
-        this.errorMsg = qiyuBaseError.getErrorMsg();
+    public LivestreamErrorException(LivestreamBaseError baseError) {
+        this.errorCode = baseError.getErrorCode();
+        this.errorMsg = baseError.getErrorMsg();
     }
 
     public int getErrorCode() {

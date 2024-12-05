@@ -69,7 +69,7 @@ public class UserPhoneServiceImpl implements IUserPhoneService {
     private UserLoginDTO registerAndLogin(String phone) {
         Long userId = idGenerateRpc.getUnSeqId(IdTypeEnum.USER_ID.getCode());
         UserDTO userDTO = new UserDTO();
-        userDTO.setNickName("旗鱼用户-" + userId);
+        userDTO.setNickName("用户-" + userId);
         userDTO.setUserId(userId);
         userService.insertOne(userDTO);
         UserPhonePO userPhonePO = new UserPhonePO();

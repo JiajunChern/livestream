@@ -9,7 +9,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
- * 旗鱼直播 用户信息拦截器
+ * 直播 用户信息拦截器
  *
  * @Author idea
  * @Date: Created in 08:48 2023/6/25

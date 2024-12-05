@@ -13,11 +13,11 @@ public class ErrorAssert {
      * 判断参数不能为空
      *
      * @param obj
-     * @param qiyuBaseError
+     * @param baseError
      */
-    public static void isNotNull(Object obj, LivestreamBaseError qiyuBaseError) {
+    public static void isNotNull(Object obj, LivestreamBaseError baseError) {
         if (obj == null) {
-            throw new LivestreamErrorException(qiyuBaseError);
+            throw new LivestreamErrorException(baseError);
         }
     }
 
@@ -25,11 +25,11 @@ public class ErrorAssert {
      * 判断字符串不能为空
      *
      * @param str
-     * @param qiyuBaseError
+     * @param baseError
      */
-    public static void isNotBlank(String str, LivestreamBaseError qiyuBaseError) {
+    public static void isNotBlank(String str, LivestreamBaseError baseError) {
         if (str == null || str.trim().length() == 0) {
-            throw new LivestreamErrorException(qiyuBaseError);
+            throw new LivestreamErrorException(baseError);
         }
     }
 
@@ -37,11 +37,11 @@ public class ErrorAssert {
      * flag == true
      *
      * @param flag
-     * @param qiyuBaseError
+     * @param baseError
      */
-    public static void isTure(boolean flag, LivestreamBaseError qiyuBaseError) {
+    public static void isTure(boolean flag, LivestreamBaseError baseError) {
         if (!flag) {
-            throw new LivestreamErrorException(qiyuBaseError);
+            throw new LivestreamErrorException(baseError);
         }
     }
 

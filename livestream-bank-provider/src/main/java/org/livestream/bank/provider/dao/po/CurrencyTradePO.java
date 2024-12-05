@@ -7,7 +7,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import java.util.Date;
 
 /**
- * 旗鱼平台的虚拟币账户
+ * 平台的虚拟币账户
  *
  * @Author idea
  * @Date: Created in 10:21 2023/8/6

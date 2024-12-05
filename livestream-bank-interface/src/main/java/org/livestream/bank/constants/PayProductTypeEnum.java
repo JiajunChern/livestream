@@ -7,7 +7,7 @@ package org.livestream.bank.constants;
  */
 public enum PayProductTypeEnum {
 
-    QIYU_COIN(0,"直播间充值-旗鱼虚拟币产品");
+    QIYU_COIN(0,"直播间充值-虚拟币产品");
 
     PayProductTypeEnum(int code, String desc) {
         this.code = code;
