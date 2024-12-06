@@ -29,7 +29,6 @@ import java.util.stream.Collectors;
 public class SingleMessageHandlerImpl implements MessageHandler {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SingleMessageHandlerImpl.class);
-    private final boolean TEST_MODE = false;
     @DubboReference
     private ImRouterRpc routerRpc;
     @DubboReference
@@ -38,52 +37,58 @@ public class SingleMessageHandlerImpl implements MessageHandler {
     @Override
     public void onMsgReceive(ImMsgBody imMsgBody) {
         int bizCode = imMsgBody.getBizCode();
-
-        // TODO: 注销 ILivingRoomRpc 开启测试
-        if (TEST_MODE && ImMsgBizCodeEnum.LIVING_ROOM_IM_CHAT_MSG_BIZ.getCode() == bizCode) {
-            JSONObject messageDTO = JSON.parseObject(imMsgBody.getData());
-            //还不是直播间业务，暂时不做过多的处理
-            ImMsgBody respMsgBody = new ImMsgBody();
-            //这里的userId设置的是objectId，因为是发送给对方客户端
-            respMsgBody.setUserId(messageDTO.getLong("objectId"));
-            respMsgBody.setAppId(AppIdEnum.QIYU_LIVE_BIZ.getCode());
-            respMsgBody.setBizCode(ImMsgBizCodeEnum.LIVING_ROOM_IM_CHAT_MSG_BIZ.getCode());
-            JSONObject jsonObject = new JSONObject();
-            jsonObject.put("senderId", messageDTO.getLong("userId"));
-            jsonObject.put("content", messageDTO.getString("content"));
-            respMsgBody.setData(jsonObject.toJSONString());
-            //将消息推送给router进行转发给im服务器
-            LOGGER.info("mq 消费消息 {}", respMsgBody);
-            routerRpc.sendMsg(respMsgBody);
-            return;
-        }
-
         //直播间的聊天消息
         if (ImMsgBizCodeEnum.LIVING_ROOM_IM_CHAT_MSG_BIZ.getCode() == bizCode) {
-            // 一个人发送 n个人接收
-            // 根据roomId，appId 去调用rpc方法，获取对应的直播间内的userId
-            // 创建一个list的imMsgBody对象，
-            MessageDTO messageDTO = JSON.parseObject(imMsgBody.getData(), MessageDTO.class);
-            Integer roomId = messageDTO.getRoomId();
-            LivingRoomReqDTO reqDTO = new LivingRoomReqDTO();
-            reqDTO.setRoomId(roomId);
-            reqDTO.setAppId(imMsgBody.getAppId());
-            //自己不用发
-            List<Long> userIdList = livingRoomRpc.queryUserIdByRoomId(reqDTO).stream().filter(x -> !x.equals(imMsgBody.getUserId())).collect(Collectors.toList());
-            if (CollectionUtils.isEmpty(userIdList)) {
-                return;
-            }
-            List<ImMsgBody> imMsgBodies = new ArrayList<>();
-            userIdList.forEach(userId -> {
-                ImMsgBody respMsg = new ImMsgBody();
-                respMsg.setUserId(userId);
-                respMsg.setAppId(AppIdEnum.QIYU_LIVE_BIZ.getCode());
-                respMsg.setBizCode(ImMsgBizCodeEnum.LIVING_ROOM_IM_CHAT_MSG_BIZ.getCode());
-                respMsg.setData(JSON.toJSONString(messageDTO));
-                imMsgBodies.add(respMsg);
-            });
-            //暂时不做过多的处理
-            routerRpc.batchSendMsg(imMsgBodies);
+            sendMsgV2(imMsgBody);
         }
+    }
+
+    /**
+     * TODO: 注销 ILivingRoomRpc， 开启测试 Netty 客户端点对点测试
+     *
+     * @param imMsgBody
+     */
+    private void sendMsgV1(ImMsgBody imMsgBody) {
+        JSONObject messageDTO = JSON.parseObject(imMsgBody.getData());
+        //还不是直播间业务，暂时不做过多的处理
+        ImMsgBody respMsgBody = new ImMsgBody();
+        //这里的userId设置的是objectId，因为是发送给对方客户端
+        respMsgBody.setUserId(messageDTO.getLong("objectId"));
+        respMsgBody.setAppId(AppIdEnum.QIYU_LIVE_BIZ.getCode());
+        respMsgBody.setBizCode(ImMsgBizCodeEnum.LIVING_ROOM_IM_CHAT_MSG_BIZ.getCode());
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("senderId", messageDTO.getLong("userId"));
+        jsonObject.put("content", messageDTO.getString("content"));
+        respMsgBody.setData(jsonObject.toJSONString());
+        //将消息推送给router进行转发给im服务器
+        LOGGER.info("mq 消费消息 {}", respMsgBody);
+        routerRpc.sendMsg(respMsgBody);
+    }
+
+    private void sendMsgV2(ImMsgBody imMsgBody) {
+        // 一个人发送 n个人接收
+        // 根据roomId，appId 去调用rpc方法，获取对应的直播间内的userId
+        // 创建一个list的imMsgBody对象，
+        MessageDTO messageDTO = JSON.parseObject(imMsgBody.getData(), MessageDTO.class);
+        Integer roomId = messageDTO.getRoomId();
+        LivingRoomReqDTO reqDTO = new LivingRoomReqDTO();
+        reqDTO.setRoomId(roomId);
+        reqDTO.setAppId(imMsgBody.getAppId());
+        //自己不用发
+        List<Long> userIdList = livingRoomRpc.queryUserIdByRoomId(reqDTO).stream().filter(x -> !x.equals(imMsgBody.getUserId())).collect(Collectors.toList());
+        if (CollectionUtils.isEmpty(userIdList)) {
+            return;
+        }
+        List<ImMsgBody> imMsgBodies = new ArrayList<>();
+        userIdList.forEach(userId -> {
+            ImMsgBody respMsg = new ImMsgBody();
+            respMsg.setUserId(userId);
+            respMsg.setAppId(AppIdEnum.QIYU_LIVE_BIZ.getCode());
+            respMsg.setBizCode(ImMsgBizCodeEnum.LIVING_ROOM_IM_CHAT_MSG_BIZ.getCode());
+            respMsg.setData(JSON.toJSONString(messageDTO));
+            imMsgBodies.add(respMsg);
+        });
+        //暂时不做过多的处理
+        routerRpc.batchSendMsg(imMsgBodies);
     }
 }
