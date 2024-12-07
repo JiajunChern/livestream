@@ -16,7 +16,7 @@ public interface ICurrencyAccountRpc {
      * @param userId
      * @param num
      */
-    void incr(long userId,int num);
+    void incr(long userId, int num);
 
     /**
      * 扣减虚拟币
@@ -24,7 +24,7 @@ public interface ICurrencyAccountRpc {
      * @param userId
      * @param num
      */
-    void decr(long userId,int num);
+    void decr(long userId, int num);
 
     /**
      * 查询余额
