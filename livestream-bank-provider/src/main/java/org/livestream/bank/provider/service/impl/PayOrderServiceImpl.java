@@ -16,7 +16,6 @@ import org.livestream.bank.provider.dao.maper.IPayOrderMapper;
 import org.livestream.bank.provider.dao.po.PayOrderPO;
 import org.livestream.bank.provider.dao.po.PayTopicPO;
 import org.livestream.bank.provider.service.*;
-import org.qiyu.live.bank.provider.service.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -121,12 +120,11 @@ public class PayOrderServiceImpl implements IPayOrderService {
         this.updateOrderStatus(payOrderPO.getOrderId(), OrderStatusEnum.PAYED.getCode());
         Integer productId = payOrderPO.getProductId();
         PayProductDTO payProductDTO = payProductService.getByProductId(productId);
-        if (payProductDTO != null &&
-                PayProductTypeEnum.QIYU_COIN.getCode().equals(payProductDTO.getType())) {
+        if (payProductDTO != null && PayProductTypeEnum.QIYU_COIN.getCode().equals(payProductDTO.getType())) {
             Long userId = payOrderPO.getUserId();
             JSONObject jsonObject = JSON.parseObject(payProductDTO.getExtra());
             Integer num = jsonObject.getInteger("coin");
-            currencyAccountService.incr(userId,num);
+            currencyAccountService.incr(userId, num);
         }
     }
 }

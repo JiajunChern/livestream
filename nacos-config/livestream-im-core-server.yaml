@@ -3,7 +3,6 @@ livestream:
     redis:
     nacos:
     rocketmq:
-
   im:
     tcp:
       port: 8085

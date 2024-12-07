@@ -72,7 +72,7 @@ public class TcpNettyImServerStarter implements InitializingBean {
         }
         ChannelHandlerContextCache.setServerIpAddress(registryIp + ":" + registryPort);
         ChannelFuture channelFuture = bootstrap.bind(port).sync();
-        LOGGER.info("服务启动成功，监听端口为{}", port);
+        LOGGER.info("服务启动成功，监听端口为 {}", port);
         //这里会阻塞掉主线程，实现服务长期开启的效果
         channelFuture.channel().closeFuture().sync();
     }

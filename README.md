@@ -1,6 +1,7 @@
 本项目是仿直播平台后台部分代码。
 
 本课程涉及的相关技术栈介绍：
+
 - Dubbo 3.2
 - SpringBoot 3.0.4
 - MyBatis-Plus 3.5.3
@@ -22,7 +23,10 @@ Dubbo集群作为服务提供者，多个API服务作为服务调用方
 - sql目录下的文件是建立分表使用的存储过程。
 
 部署流程：
+
 - Docker 启动 nacos
 
 模块启动顺序：
-- ImProviderApplication -> ImCoreServerApplication -> ImRouterProviderApplication -> MsgProviderApplication -> ImClientApplication -> ImClientApplication2
+
+- ImProviderApplication -> ImCoreServerApplication -> ImRouterProviderApplication -> LivingProviderApplication ->
+  MsgProviderApplication -> ImClientApplication -> ImClientApplication2
