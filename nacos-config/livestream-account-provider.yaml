@@ -1,11 +1,18 @@
+livestream:
+  server:
+    redis:
+    nacos:
+    rocketmq:
+    mysql:
+
 spring:
   application:
-    name: qiyu-live-account-provider
+    name: livestream-account-provider
   data:
     redis:
-      port: 8801
-      host: cloud.db
-      password: qiyu
+      port: 6379
+      host: ${livestream.server.redis}
+      password: redis123
       lettuce:
         pool:
           min-idle: 10
@@ -17,7 +24,7 @@ dubbo:
     name: ${spring.application.name}
   registry:
     #docker启动的时候，注入host的配置
-    address: nacos://qiyu.nacos.com:8848?namespace=qiyu-live-test&&username=qiyu&&password=qiyu
+    address: nacos://${livestream.server.nacos}:8848?namespace=livestream-dev #&&username=nacos&&password=nacos
   protocol:
     name: dubbo
     port: 9090

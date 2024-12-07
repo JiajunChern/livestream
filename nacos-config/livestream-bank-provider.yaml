@@ -1,21 +1,35 @@
+livestream:
+  server:
+    redis:
+    nacos:
+    rocketmq:
+    mysql:
+  rmq:
+    producer:
+      nameSrv: ${livestream.server.rocketmq}:9876
+      groupName: ${spring.application.name}
+      applicationName: ${spring.application.name}
+      sendMsgTimeout: 3000
+      retryTimes: 2
+
 spring:
   application:
-    name: qiyu-live-bank-provider
+    name: livestream-bank-provider
   datasource:
     hikari:
       minimum-idle: 10
       maximum-pool-size: 200
     driver-class-name: com.mysql.cj.jdbc.Driver
     #访问主库
-    url: jdbc:mysql://cloud.db:8808/qiyu_live_bank?useUnicode=true&characterEncoding=utf8
+    url: jdbc:mysql://${livestream.server.mysql}:8808/livestream_bank?useUnicode=true&characterEncoding=utf8
     username: root
-    password: qiyu
+    password: root123_A
 
   data:
     redis:
-      port: 8801
-      host: cloud.db
-      password: qiyu
+      port: 6379
+      host: ${livestream.server.redis}
+      password: redis123
       lettuce:
         pool:
           min-idle: 10
@@ -27,7 +41,7 @@ dubbo:
     name: ${spring.application.name}
   registry:
     #docker启动的时候，注入host的配置
-    address: nacos://qiyu.nacos.com:8848?namespace=qiyu-live-test&&username=qiyu&&password=qiyu
+    address: nacos://${livestream.server.nacos}:8848?namespace=livestream-dev #&&username=nacos&&password=nacos
   protocol:
     name: dubbo
     port: 9096
@@ -35,12 +49,3 @@ dubbo:
     dispatcher: execution
     threads: 500
     accepts: 500
-
-qiyu:
-  rmq:
-    producer:
-      nameSrv: qiyu.rmq.com:9876
-      groupName: ${spring.application.name}
-      applicationName: ${spring.application.name}
-      sendMsgTimeout: 3000
-      retryTimes: 2
