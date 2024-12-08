@@ -29,8 +29,12 @@ public class RocketMQProducerConfig {
     private RocketMQProducerProperties rocketMQProducerProperties;
 
     @Bean
-    public MQProducer mqProducer(){
-        ThreadPoolExecutor asyncThreadPool = new ThreadPoolExecutor(Runtime.getRuntime().availableProcessors() * 2, 100, 30, TimeUnit.SECONDS, new ArrayBlockingQueue<>(2000), new ThreadFactory() {
+    public MQProducer mqProducer() {
+        // IO 密集型任务，核心线程数设置为 CPU 核数 * 2
+        int corePoolSize = Runtime.getRuntime().availableProcessors() * 2;
+        // 如果 CPU 核数过大 100 太小会抛异常
+        int maxPoolSize = corePoolSize > 100 ? 1000 : 100;
+        ThreadPoolExecutor asyncThreadPool = new ThreadPoolExecutor(corePoolSize, maxPoolSize, 30, TimeUnit.SECONDS, new ArrayBlockingQueue<>(2000), new ThreadFactory() {
             @Override
             public Thread newThread(Runnable r) {
                 return new Thread(r, "rocketmq-async-thread-" + new Random().ints().toString());

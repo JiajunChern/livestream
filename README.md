@@ -30,3 +30,5 @@ Dubbo集群作为服务提供者，多个API服务作为服务调用方
 
 - ImProviderApplication -> ImCoreServerApplication -> ImRouterProviderApplication -> LivingProviderApplication ->
   MsgProviderApplication -> ImClientApplication -> ImClientApplication2
+
+- UserProviderApplication -> IdGenerateApplication

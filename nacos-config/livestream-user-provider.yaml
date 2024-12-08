@@ -1,11 +1,29 @@
+livestream:
+  server:
+    redis:
+    nacos:
+    rocketmq:
+    mysql:
+  rmq:
+    consumer:
+      nameSrv: ${livestream.server.rocketmq}:9876
+      groupName: ${spring.application.name}
+    producer:
+      nameSrv: ${livestream.server.rocketmq}:9876
+      groupName: ${spring.application.name}
+      applicationName: ${spring.application.name}
+      sendMsgTimeout: 3000
+      retryTimes: 2
+
+
 spring:
   application:
-    name: qiyu-live-user-provider
+    name: livestream-user-provider
   datasource:
     driver-class-name: org.apache.shardingsphere.driver.ShardingSphereDriver
-    url: jdbc:shardingsphere:nacos:qiyu.nacos.com:8848:livestream-user-shardingjdbc.yaml?username=qiyu&&password=qiyu&&namespace=qiyu-live-test
+    url: jdbc:shardingsphere:nacos:${livestream.server.nacos}:8848:livestream-user-shardingjdbc.yaml?namespace=livestream-dev #&&username=nacos&&password=nacos
     hikari:
-      pool-name: qiyu-user-pool
+      pool-name: user-pool
       minimum-idle: 100
       maximum-pool-size: 300
       idle-timeout: 60000
@@ -13,25 +31,14 @@ spring:
       max-lifetime: 60000
   data:
     redis:
-      port: 8801
-      host: cloud.db
-      password: qiyu
+      port: 6379
+      host: ${livestream.server.redis}
+      password: redis123
       lettuce:
         pool:
           min-idle: 10
           max-active: 100
           max-idle: 10
-qiyu:
-  rmq:
-    consumer:
-      nameSrv: qiyu.rmq.com:9876
-      groupName: qiyuLiveMqApplication
-    producer:
-      nameSrv: qiyu.rmq.com:9876
-      groupName: ${spring.application.name}
-      applicationName: ${spring.application.name}
-      sendMsgTimeout: 3000
-      retryTimes: 2
 
 
 dubbo:
@@ -39,7 +46,7 @@ dubbo:
     name: ${spring.application.name}
   registry:
     #docker启动的时候，注入host的配置
-    address: nacos://qiyu.nacos.com:8848?namespace=qiyu-live-test&&username=qiyu&&password=qiyu
+    address: nacos://${livestream.server.nacos}:8848?namespace=livestream-dev #&&username=nacos&&password=nacos
   protocol:
     name: dubbo
     port: 9090

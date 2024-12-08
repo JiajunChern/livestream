@@ -12,7 +12,7 @@
 
     <properties>
         <docker.registry.address>registry.baidubce.com</docker.registry.address>
-        <docker.registry.namespace>qiyu-live-test</docker.registry.namespace>
+        <docker.registry.namespace>livestream-dev</docker.registry.namespace>
     </properties>
 
     <dependencies>

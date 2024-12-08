@@ -3,13 +3,13 @@ livestream:
     redis:
     nacos:
     rocketmq:
-  rmq:
-    producer:
-      nameSrv: ${livestream.server.rocketmq}:9876
-      groupName: ${spring.application.name}
-      applicationName: ${spring.application.name}
-      sendMsgTimeout: 3000
-      retryTimes: 2
+#  rmq:
+#    producer:
+#      nameSrv: ${livestream.server.rocketmq}:9876
+#      groupName: ${spring.application.name}
+#      applicationName: ${spring.application.name}
+#      sendMsgTimeout: 3000
+#      retryTimes: 2
 
 spring:
   application:

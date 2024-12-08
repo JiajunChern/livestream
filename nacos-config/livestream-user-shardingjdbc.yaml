@@ -1,17 +1,35 @@
-dataSources:
-  user_master:  ##新表，重建的分表
-    dataSourceClassName: com.zaxxer.hikari.HikariDataSource
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    jdbcUrl: jdbc:mysql://cloud.user.db.master:8808/qiyu_live_user?useUnicode=true&characterEncoding=utf8
-    username: qiyu
-    password: qiyu
+livestream:
+  server:
+    redis:
+    nacos:
+    rocketmq:
+    mysql-master:
+    mysql-slave:
+  rmq:
+    consumer:
+      nameSrv: ${livestream.server.rocketmq}:9876
+      groupName: ${spring.application.name}
+    producer:
+      nameSrv: ${livestream.server.rocketmq}:9876
+      groupName: ${spring.application.name}
+      applicationName: ${spring.application.name}
+      sendMsgTimeout: 3000
+      retryTimes: 2
 
-  user_slave0:  ##新表，重建的分表
+dataSources:
+  user_master: ##新表，重建的分表
     dataSourceClassName: com.zaxxer.hikari.HikariDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
-    jdbcUrl: jdbc:mysql://cloud.user.db.slave:8808/qiyu_live_user?useUnicode=true&characterEncoding=utf8
-    username: qiyu
-    password: qiyu
+    jdbcUrl: jdbc:mysql://${livestream.server.mysql-master}:3306/livestream_user?useUnicode=true&characterEncoding=utf8
+    username: root
+    password: root123_A
+
+  user_slave0: ##新表，重建的分表
+    dataSourceClassName: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    jdbcUrl: jdbc:mysql://${livestream.server.mysql-slave}:3306/livestream_user?useUnicode=true&characterEncoding=utf8
+    username: root
+    password: root123_A
 
 rules:
   - !READWRITE_SPLITTING
