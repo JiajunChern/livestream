@@ -15,8 +15,6 @@
         <module>livestream-api</module>
         <module>livestream-common-interface</module>
         <module>livestream-framework</module>
-        <module>livestream-id-generate-interface</module>
-        <module>livestream-id-generate-provider</module>
         <module>livestream-gateway</module>
         <module>livestream-msg-interface</module>
         <module>livestream-msg-provider</module>

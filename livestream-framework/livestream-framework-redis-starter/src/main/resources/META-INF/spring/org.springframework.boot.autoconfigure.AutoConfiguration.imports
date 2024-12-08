@@ -1,4 +1,5 @@
 org.idea.livestream.framework.redis.starter.config.RedisConfig
+org.idea.livestream.framework.redis.starter.id.RedisSeqIdHelper
 org.idea.livestream.framework.redis.starter.key.UserProviderCacheKeyBuilder
 org.idea.livestream.framework.redis.starter.key.MsgProviderCacheKeyBuilder
 org.idea.livestream.framework.redis.starter.key.AccountProviderCacheKeyBuilder

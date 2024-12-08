@@ -4,12 +4,11 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import jakarta.annotation.Resource;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.dubbo.config.annotation.DubboReference;
+import org.idea.livestream.framework.redis.starter.id.RedisSeqIdHelper;
 import org.idea.livestream.framework.redis.starter.key.UserProviderCacheKeyBuilder;
 import org.livestream.common.interfaces.enums.CommonStatusEum;
 import org.livestream.common.interfaces.utils.ConvertBeanUtils;
 import org.livestream.common.interfaces.utils.DESUtils;
-import org.livestream.id.generate.enums.IdTypeEnum;
-import org.livestream.id.generate.interfaces.IdGenerateRpc;
 import org.livestream.user.dto.UserDTO;
 import org.livestream.user.dto.UserLoginDTO;
 import org.livestream.user.dto.UserPhoneDTO;
@@ -42,8 +41,8 @@ public class UserPhoneServiceImpl implements IUserPhoneService {
     private UserProviderCacheKeyBuilder cacheKeyBuilder;
     @Resource
     private IUserService userService;
-    @DubboReference
-    private IdGenerateRpc idGenerateRpc;
+    @Resource
+    private RedisSeqIdHelper redisSeqIdHelper;
 
     @Override
     public UserLoginDTO login(String phone) {
@@ -67,7 +66,7 @@ public class UserPhoneServiceImpl implements IUserPhoneService {
      * @param phone
      */
     private UserLoginDTO registerAndLogin(String phone) {
-        Long userId = idGenerateRpc.getUnSeqId(IdTypeEnum.USER_ID.getCode());
+        Long userId = redisSeqIdHelper.nextId("user");
         UserDTO userDTO = new UserDTO();
         userDTO.setNickName("用户-" + userId);
         userDTO.setUserId(userId);
