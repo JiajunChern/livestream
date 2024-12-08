@@ -21,7 +21,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(value = Exception.class)
     @ResponseBody
     public WebResponseVO errorHandler(HttpServletRequest request, Exception e) {
-        LOGGER.error(request.getRequestURI() + ",error is ", e);
+        LOGGER.error(request.getRequestURI() + ", error is ", e);
         return WebResponseVO.sysError("系统异常");
     }
 
@@ -30,7 +30,7 @@ public class GlobalExceptionHandler {
     @ResponseBody
     public WebResponseVO sysErrorHandler(HttpServletRequest request, LivestreamErrorException e) {
         //业务异常，参数传递有误,都会走到这里
-        LOGGER.error(request.getRequestURI() + ",error code is {},error msg is {}", e.getErrorCode(), e.getErrorMsg());
+        LOGGER.error(request.getRequestURI() + ", error code is {}, error msg is {}", e.getErrorCode(), e.getErrorMsg());
         return WebResponseVO.bizError(e.getErrorCode(), e.getErrorMsg());
     }
 }
