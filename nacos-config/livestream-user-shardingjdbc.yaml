@@ -1,21 +1,3 @@
-livestream:
-  server:
-    redis:
-    nacos:
-    rocketmq:
-    mysql-master:
-    mysql-slave:
-  rmq:
-    consumer:
-      nameSrv: ${livestream.server.rocketmq}:9876
-      groupName: ${spring.application.name}
-    producer:
-      nameSrv: ${livestream.server.rocketmq}:9876
-      groupName: ${spring.application.name}
-      applicationName: ${spring.application.name}
-      sendMsgTimeout: 3000
-      retryTimes: 2
-
 dataSources:
   user_master: ##新表，重建的分表
     dataSourceClassName: com.zaxxer.hikari.HikariDataSource
